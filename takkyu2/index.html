@@ -30,8 +30,9 @@
         document.getElementById("z").innerHTML = "振り加速度 " + Math.floor(z);
         document.getElementById("vz").innerHTML = "振り速度 " + Math.floor(vz);
         if(vz > 7 && z>7){
-          if(z > 15){
+          if(z > 12){
             smash.play();
+            var mSec =100
             navigator.vibrate(mSec);
           }else{
            audio.play();
