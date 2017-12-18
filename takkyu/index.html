@@ -12,8 +12,9 @@
     var mSec =20
         
     var audio = new Audio('daon.wav');
+    var smash = new Audio('daon2.wav");
     audio.load();
-    
+    smash.load();
     window.addEventListener("devicemotion", devicemotionHandler);
     // 加速度が変化
     function devicemotionHandler(event) {
@@ -28,7 +29,11 @@
         document.getElementById("z").innerHTML = "振り加速度 " + Math.floor(z);
         document.getElementById("vz").innerHTML = "振り速度 " + Math.floor(vz);
         if(vz > 7 && z>7){
-            audio.play();
+            if(z > 15){
+                smash.play();
+            }else{
+                audio.play();
+            }
             navigator.vibrate(mSec);
         }
         if(vz>100||vz<-100){
