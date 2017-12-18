@@ -1,1 +1,55 @@
+<!DOCTYPE html>
+<html>
 
+<head>
+    <title>卓球</title>
+    <script type="text/javascript">
+    var x = 0;
+    var y = 0;
+    var z = 0;
+    var a = 0;
+    var v = 0;
+    var mSec =20
+        
+    var audio = new Audio('daon.wav');
+    var smash = new Audio('daon2.wav');
+      
+    audio.load();
+    smash.load();
+      window.addEventListener("devicemotion", devicemotionHandler);
+    // 加速度が変化
+    function devicemotionHandler(event) {
+        // 加速度
+        // X軸
+        var x = event.acceleration.x;
+        // Y軸
+        var y = event.acceleration.y;
+        // Z軸
+        var z = event.acceleration.z;
+        vz = v+z;
+        document.getElementById("z").innerHTML = "振り加速度 " + Math.floor(z);
+        document.getElementById("vz").innerHTML = "振り速度 " + Math.floor(vz);
+        if(vz > 7 && z>7){
+          if(z > 15){
+            smash.play();
+            navigator.vibrate(mSec);
+          }else{
+           audio.play();
+           navigator.vibrate(mSec);
+          }
+        if(vz>100||vz<-100){
+            vz=0
+        }
+    }
+    </script>
+
+</head>
+
+<body>
+    <h1 id="z">振り加速度: </h1>
+    <h1 id="vz">振り速度: </h1>
+    <img src="racket.jpeg" alt="ラケット" style="width:100%; height:auto;" />
+
+</body>
+
+</html>
